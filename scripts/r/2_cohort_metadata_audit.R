@@ -34,13 +34,6 @@ if (dry_run) {
   quit(status = 0)
 }
 
-if (!requireNamespace("GEOquery", quietly = TRUE)) {
-  stop(
-    "GEOquery 패키지가 필요합니다. R 콘솔에서 다음을 실행하세요:\n",
-    "install.packages('BiocManager')\nBiocManager::install('GEOquery')"
-  )
-}
-
 dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(cache_dir, recursive = TRUE, showWarnings = FALSE)
 
@@ -64,23 +57,30 @@ detect_tissue <- function(text) {
   NA_character_
 }
 
-to_sample_record <- function(gsm, series_id) {
-  meta <- GEOquery::Meta(gsm)
-  characteristics <- unlist(meta[grep("^characteristics_ch1", names(meta))], use.names = FALSE)
-  characteristics <- as.character(characteristics)
-  source_name <- as.character(unlist(meta[grep("^source_name_ch1", names(meta))], use.names = FALSE))
-  title <- as.character(meta$title %||% NA_character_)
+soft_field <- function(lines, field_name, multiple = FALSE) {
+  prefix <- paste0("!", field_name, " = ")
+  matches <- lines[startsWith(lines, prefix)]
+  values <- sub(paste0("^", prefix), "", matches)
+  if (multiple) return(values)
+  if (length(values)) values[[1]] else NA_character_
+}
+
+to_sample_record <- function(sample_lines, series_id) {
+  characteristics <- soft_field(sample_lines, "Sample_characteristics_ch1", multiple = TRUE)
+  source_name <- soft_field(sample_lines, "Sample_source_name_ch1")
+  title <- soft_field(sample_lines, "Sample_title")
   combined <- paste(c(title, source_name, characteristics), collapse = " | ")
 
-  age_raw <- extract_characteristic(characteristics, "^(age|age \\(years\\)|age at).*:")
+  age_raw <- extract_characteristic(characteristics, "^(age|age \\([^)]*\\)|age at).*:")
+  if (is.na(age_raw)) age_raw <- title
   sex <- extract_characteristic(characteristics, "^(sex|gender).*:")
   disease_status <- extract_characteristic(characteristics, "^(disease|disease state|diagnosis|case control).*:")
   smoking_status <- extract_characteristic(characteristics, "^(smoking|smoker|tobacco).*:")
 
   data.frame(
     series_id = series_id,
-    sample_id = as.character(meta$geo_accession %||% NA_character_),
-    platform_id = as.character(meta$platform_id %||% NA_character_),
+    sample_id = soft_field(sample_lines, "Sample_geo_accession"),
+    platform_id = soft_field(sample_lines, "Sample_platform_id"),
     title = title,
     age_raw = age_raw,
     age_numeric = extract_age(age_raw),
@@ -92,23 +92,28 @@ to_sample_record <- function(gsm, series_id) {
   )
 }
 
-`%||%` <- function(value, fallback) {
-  if (is.null(value) || !length(value)) fallback else value
+split_soft_samples <- function(lines) {
+  start_indices <- which(startsWith(lines, "^SAMPLE = "))
+  if (!length(start_indices)) return(list())
+  end_indices <- c(start_indices[-1] - 1L, length(lines))
+  Map(function(start, end) lines[start:end], start_indices, end_indices)
 }
 
 fetch_series_metadata <- function(series_id) {
   message("메타데이터 수집: ", series_id)
-  gse <- GEOquery::getGEO(
-    series_id,
-    GSEMatrix = FALSE,
-    getGPL = FALSE,
-    destdir = cache_dir
+  # NCBI GEO의 brief 형식은 표본 특성만 제공하며, beta value·IDAT·데이터 테이블을 포함하지 않는다.
+  source_url <- paste0(
+    "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=", series_id,
+    "&targ=gsm&view=brief&form=text"
   )
-  gsm_list <- GEOquery::GSMList(gse)
-  if (!length(gsm_list)) {
-    stop(series_id, "에서 GSM 메타데이터를 찾지 못했습니다.")
+  cache_path <- file.path(cache_dir, paste0(series_id, "_gsm_brief.soft"))
+  if (!file.exists(cache_path)) {
+    utils::download.file(source_url, cache_path, method = "libcurl", mode = "wb", quiet = TRUE)
   }
-  do.call(rbind, lapply(gsm_list, to_sample_record, series_id = series_id))
+  lines <- readLines(cache_path, warn = FALSE, encoding = "UTF-8")
+  samples <- split_soft_samples(lines)
+  if (!length(samples)) stop(series_id, "에서 GSM 메타데이터를 찾지 못했습니다.")
+  do.call(rbind, lapply(samples, to_sample_record, series_id = series_id))
 }
 
 sample_tables <- lapply(registry$series_id, function(series_id) {
