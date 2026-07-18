@@ -6,7 +6,9 @@
 args <- commandArgs(trailingOnly = TRUE)
 dry_run <- "--dry-run" %in% args
 project_arg <- args[!grepl("^--", args)]
-project_dir <- normalizePath(if (length(project_arg)) project_arg[[1]] else ".")
+# Windows R은 한글이 포함된 경로에 normalizePath()를 적용하면 인코딩이 바뀌어
+# file.exists()가 실패할 수 있다. 사용자가 입력한 경로 또는 현재 경로를 그대로 유지한다.
+project_dir <- if (length(project_arg)) project_arg[[1]] else "."
 
 registry_path <- file.path(project_dir, "config", "cohort_registry.csv")
 output_dir <- file.path(project_dir, "outputs", "cohort_metadata_audit")
