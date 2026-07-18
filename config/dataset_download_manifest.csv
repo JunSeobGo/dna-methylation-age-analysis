@@ -1,0 +1,3 @@
+dataset_id,resource_id,resource_type,remote_url,local_path,expected_size_mb,required_for_stage,description
+GSE40279,sample_key,sample_key,https://ftp.ncbi.nlm.nih.gov/geo/series/GSE40nnn/GSE40279/suppl/GSE40279_sample_key.txt.gz,data/raw/GSE40279/GSE40279_sample_key.txt.gz,0.005,yes,GSM 접근번호와 beta matrix 열 이름을 연결하는 표본 키
+GSE40279,average_beta,beta_matrix,https://ftp.ncbi.nlm.nih.gov/geo/series/GSE40nnn/GSE40279/suppl/GSE40279_average_beta.txt.gz,data/raw/GSE40279/GSE40279_average_beta.txt.gz,1100,yes,656개 표본의 평균 beta value 행렬
