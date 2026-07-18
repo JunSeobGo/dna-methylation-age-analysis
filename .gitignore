@@ -1,0 +1,40 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# R / Python cache
+.Rhistory
+.RData
+.Rapp.history
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+
+# Project data: raw, processed, and downloaded datasets must stay local.
+# Keep data/README.md as the version-controlled guide to obtaining data.
+data/raw/
+data/processed/
+
+# Large or sensitive documents
+*.zip
+*.xlsx
+*.hwp
+*.pdf
+*.pptx
+*.ppt
+*.docx
+*.doc
+
+# Analysis outputs that may be regenerated
+outputs/*
+Output.csv
+Output1.csv
+LogFile.txt
+
+# Local environment / temporary files
+*.log
+*.tmp
+*.bak
+
+# Keep only essential source and data files
