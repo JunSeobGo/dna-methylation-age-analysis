@@ -7,3 +7,4 @@ GSE55763,candidate,candidate_scale_up,peripheral blood,GPL13534,conditional,대�
 GSE80417,exclude,exclude,whole blood,GPL13534,no,조현병 환자와 대조군으로 구성되어 일반 연령 예측 학습에서 제외,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE80417
 GSE84727,exclude,exclude,whole blood,GPL13534,no,조현병 환자와 대조군으로 구성되어 일반 연령 예측 학습에서 제외,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE84727
 GSE111629,exclude,exclude,whole blood,GPL13534,no,파킨슨병 환자와 대조군으로 구성되어 일반 연령 예측 학습에서 제외,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE111629
+GSE207605,candidate,candidate_training_pool,whole blood,450K/EPIC,conditional,19개 혈액 코호트의 소형 재분석 집합이며 질환·반복측정·코호트 누수 감사 후 선별 사용,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE207605
