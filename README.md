@@ -135,3 +135,6 @@ BDI 분석은 상관계수, 정규성 검정, 등분산성 검정, 두 집단 �
 
 - Horvath, S. (2013). *DNA methylation age of human tissues and cell types*. Genome Biology, 14, R115.
 
+## 개발 운영 방식
+
+개인 프로젝트이지만 기능 브랜치, Issue, Pull Request를 기준으로 변경 이력을 관리합니다. 자세한 규칙은 [CONTRIBUTING.md](CONTRIBUTING.md)와 [GitHub 운영 가이드](docs/github-workflow.md)를 참고하세요.

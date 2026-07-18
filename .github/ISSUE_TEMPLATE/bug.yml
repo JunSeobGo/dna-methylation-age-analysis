@@ -1,0 +1,33 @@
+name: 오류 보고
+description: 코드, 데이터 처리, 재현성, 문서 문제를 기록합니다.
+title: "[Bug] "
+labels: ["type: bug"]
+assignees: ["JunSeobGo"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: 문제 설명
+      description: 예상한 동작과 실제 동작을 작성하세요.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 재현 방법
+      description: 실행 명령, 데이터 특성, 오류 메시지를 작성하세요.
+      placeholder: "1. ...\n2. ...\n3. ..."
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 실행 환경
+      description: OS, R/Python과 패키지 버전, 브랜치 이름을 작성하세요.
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 수정 완료 조건
+      description: 수정 완료를 어떻게 검증할지 작성하세요.
+    validations:
+      required: true
