@@ -138,3 +138,7 @@ BDI 분석은 상관계수, 정규성 검정, 등분산성 검정, 두 집단 �
 ## 개발 운영 방식
 
 개인 프로젝트이지만 기능 브랜치, Issue, Pull Request를 기준으로 변경 이력을 관리합니다. 자세한 규칙은 [CONTRIBUTING.md](CONTRIBUTING.md)와 [GitHub 운영 가이드](docs/github-workflow.md)를 참고하세요.
+
+## 외부 코호트 점검
+
+후보 코호트의 조직·플랫폼·연령 메타데이터를 먼저 점검한 뒤에만 대용량 beta value를 내려받습니다. 후보와 제외 근거, 실행 방법은 [외부 코호트 선정과 메타데이터 점검](docs/cohort-selection.md)에 정리했습니다.
