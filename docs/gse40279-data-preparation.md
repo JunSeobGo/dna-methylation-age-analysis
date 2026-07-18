@@ -50,3 +50,13 @@ GSE40279는 656개 전체혈액 표본의 Illumina HumanMethylation450K 데이�
 1. beta matrix의 첫 열이 CpG probe ID인지 확인한다.
 2. 나머지 열이 `beta_column_name`과 정확히 일치하는지 점검한다.
 3. 656개 표본 전체가 실제 연령과 연결된 뒤에만 학습용 행렬을 만든다.
+
+## 21k CpG 추출
+
+기존 DNAm age 계산은 21k CpG annotation을 요구한다. 전체 450K 행렬을 메모리에 올리지 않고 필요한 행만 추출하려면 다음을 실행한다.
+
+```powershell
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/5_extract_gse40279_21k_beta.R
+```
+
+이 스크립트는 656개 표본 열 순서를 다시 확인하고, 모든 필수 CpG의 존재·beta 값의 숫자 형식·0~1 범위를 검증한다. 결과는 `data/processed/GSE40279_beta_21k.tsv`, 검증 요약은 `outputs/gse40279_21k_extraction_summary.csv`에 생성된다.
