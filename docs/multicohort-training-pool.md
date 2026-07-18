@@ -55,6 +55,32 @@
 
 원본과 생성 결과는 Git에 포함하지 않는다. 정책 명세, 스크립트, 방법 문서만 버전 관리한다.
 
+## 학습 bundle 생성
+
+감사에서 확정한 1차 학습 정책을 바탕으로 `7_build_gse207605_training_bundle.R`이
+Elastic Net 중첩 교차검증에 바로 투입할 수 있는 학습용 bundle을 만든다.
+
+- `model_policy == include`인 8개 코호트만 선택한다.
+- `data/processed/gse207605_primary_common_probes.txt`의 869개 공통 CpG만 동일 순서로 추출한다.
+- 표본 방향(행=표본, 열=CpG)으로 정렬해 `5,541 × 869` beta 행렬을 만든다.
+- `x`, `y`(chronological_age), `group`(source_series_id), `sample_id`, `feature_names`를
+  담은 리스트를 `data/processed/gse207605_training_bundle.rds`로 저장한다.
+
+결측 대치와 표준화는 교차검증의 각 학습 fold 안에서만 수행해야 하므로 이 단계에서는
+전체 데이터 기준 대치를 하지 않고 `NA`를 그대로 보존한다. 생성 요약은
+`outputs/gse207605_training_bundle_summary.csv`에 저장한다.
+
+```powershell
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/7_build_gse207605_training_bundle.R
+```
+
+실행 시 다음을 검증한다.
+
+- `X` 행 5,541 / 열 869, `y`·`group`·`sample_id` 길이 5,541
+- `sample_id`·CpG 중복 0, beta 범위 0~1
+- 코호트별 표본 수가 명세와 일치, 모든 행과 메타데이터 순서 일치
+- 결측치 수와 비율 보고(대치하지 않음)
+
 ## 다음 모델링 단계
 
 1. `GSE87571`에서 1차 학습 공통 CpG를 추출한다.
