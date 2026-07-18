@@ -2,7 +2,7 @@
 
 ## 목적
 
-기존 `GSE72680`의 표본 부족 한계를 보완하기 위해, 혈액 조직과 Illumina HumanMethylation450K 플랫폼이 일치하는 공개 코호트를 우선 점검한다. 이 단계에서는 원천 beta value를 내려받지 않고 표본 메타데이터만 수집한다.
+기존 `GSE72680`의 표본 부족 한계를 보완하기 위해, 혈액 조직과 Illumina HumanMethylation450K 플랫폼이 일치하는 공개 코호트를 우선 점검한다. 이 단계에서는 NCBI GEO의 `brief` 메타데이터 응답만 사용하며, 원천 beta value·IDAT·SOFT 전체 데이터 테이블은 내려받지 않는다.
 
 ## 후보 코호트
 
@@ -25,20 +25,15 @@
 Rscript scripts/r/2_cohort_metadata_audit.R --dry-run
 ```
 
-실제 메타데이터를 수집하려면 `GEOquery`가 필요하다.
-
-```r
-install.packages("BiocManager")
-BiocManager::install("GEOquery")
-```
-
-그다음 프로젝트 루트에서 실행한다.
+실제 메타데이터 수집에는 별도 R 패키지가 필요하지 않다. 프로젝트 루트에서 다음을 실행한다.
 
 ```bash
 Rscript scripts/r/2_cohort_metadata_audit.R
 ```
 
 결과는 Git에서 제외되는 `outputs/cohort_metadata_audit/`에 저장된다.
+
+`geo_soft_cache/`에는 코호트별 표본 메타데이터만 캐시된다. 이 파일은 재실행 시간을 줄이기 위한 것이며, 분석용 methylation 값은 포함하지 않는다.
 
 ## 통과 기준
 
