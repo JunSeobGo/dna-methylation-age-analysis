@@ -45,11 +45,12 @@ DNAage_clean/
 
 - R 4.2 이상 권장
 - `BiocManager`, `GEOquery`, `WGCNA`, `sqldf`, `readr`, `progress`
+- 다중 코호트 중첩 교차검증(`scripts/r/8_train_grouped_elastic_net.R`)에는 `glmnet` 필요
 
 필요한 패키지는 아래와 같이 설치할 수 있습니다.
 
 ```r
-install.packages(c("BiocManager", "WGCNA", "sqldf", "readr", "progress"))
+install.packages(c("BiocManager", "WGCNA", "sqldf", "readr", "progress", "glmnet"))
 BiocManager::install(c("GEOquery", "impute"))
 ```
 
