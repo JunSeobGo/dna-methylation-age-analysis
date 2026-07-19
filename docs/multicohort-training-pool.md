@@ -118,9 +118,32 @@ Elastic Net 중첩 교차검증에 바로 투입할 수 있는 학습용 bundle�
 > 869개 공통 CpG는 `GSE207605` 원 논문에서 연령 연관성으로 사전 선택된 특징이므로 이 결과는
 > **벤치마크**로 해석한다. 최종 일반화 성능은 `GSE87571` 외부 검증에서 판단한다.
 
+## GSE87571 외부 검증 bundle 준비
+
+`9_prepare_gse87571_external_validation.R`은 최종 잠금 외부 검증 세트 `GSE87571`의 beta
+행렬에서 869개 공통 CpG를 학습 bundle과 동일한 feature 순서로 추출해 외부 검증용 RDS를
+만든다. **이 단계에서는 모델 성능(나이 기반 지표)을 계산하지 않는다.**
+
+- `GSE87571_matrix1of2.txt.gz`, `GSE87571_matrix2of2.txt.gz`는 SWAN 정규화 Average Beta로,
+  표본이 두 파일에 나뉘어 있고 각 표본은 두 열(`Xn`=beta, `Xn.1`=detection p-value)로 저장된다.
+- beta 열은 exact-zero 비율로 자동 판정한다(detection p-value 열은 정확히 0인 값이 대부분).
+- 열 라벨 `Xn`은 SOFT 메타데이터의 sample_title과 연결되고, 여기서 GSM과 age를 얻는다.
+- 학습 데이터와 GSM이 겹치지 않는지, feature 순서가 학습 bundle과 정확히 일치하는지 검증한다.
+
+```powershell
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/9_prepare_gse87571_external_validation.R
+```
+
+검증 결과 요약:
+
+- 표본 732개 × CpG 869개, 연령 확인 가능 표본 729개(연령 14~94세)
+- 학습 데이터와 GSM 중복 0건, feature 순서 학습 bundle과 일치
+- 결측치는 대치하지 않고 보존, beta 범위 0~1
+- 산출물: `data/processed/gse87571_external_validation_bundle.rds`,
+  `outputs/gse87571_external_validation_summary.csv`(Git 제외)
+
 ## 다음 모델링 단계
 
-1. `GSE87571`에서 1차 학습 공통 CpG를 추출한다.
-2. 중첩 교차검증 결과를 바탕으로 코호트·CpG·대치 방법·`alpha`·`lambda`·가중치를 고정한다.
-3. `conditional` 코호트를 하나씩 추가해 성능과 편향 변화를 민감도 분석한다.
-4. 모델과 임계값을 고정한 뒤 `GSE87571`을 한 번만 평가한다.
+1. 중첩 교차검증 결과를 바탕으로 코호트·CpG·대치 방법·`alpha`·`lambda`·가중치를 고정한다.
+2. `conditional` 코호트를 하나씩 추가해 성능과 편향 변화를 민감도 분석한다.
+3. 모델과 임계값을 고정한 뒤 `GSE87571`을 한 번만 평가한다.
