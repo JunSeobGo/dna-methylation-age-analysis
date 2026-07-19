@@ -21,6 +21,14 @@ This folder contains the R analysis scripts used for the project.
 & "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/7_build_gse207605_training_bundle.R
 ```
 
+## 코호트 그룹 기반 중첩 교차검증
+
+`8_train_grouped_elastic_net.R`은 학습 bundle로 leave-one-cohort-out 중첩 교차검증을 수행해 Elastic Net 벤치마크를 학습·평가한다(`glmnet` 필요). outer/inner loop를 모두 코호트 그룹 단위로 분리하고, 결측 대치와 표준화를 각 학습 fold 안에서만 계산해 데이터 누수를 막는다. 일반 가중치와 코호트 균형 가중치를 비교하며, 지표·fold 파라미터·진단 그래프는 `outputs/gse207605_cv_*`에 저장한다(Git 제외).
+
+```powershell
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/8_train_grouped_elastic_net.R
+```
+
 ## Files
 - 1_data_download.R: download GEO sample metadata
 - 1_data_download_from_geo.r: duplicate download script retained for convenience
