@@ -29,6 +29,23 @@ This folder contains the R analysis scripts used for the project.
 & "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/8_train_grouped_elastic_net.R
 ```
 
+## GSE87571 외부 검증 bundle 준비
+
+`9_prepare_gse87571_external_validation.R`은 최종 잠금 외부 검증 세트 `GSE87571`의 beta 행렬(`GSE87571_matrix1of2.txt.gz`, `GSE87571_matrix2of2.txt.gz`)에서 869개 공통 CpG를 학습 bundle과 동일한 feature 순서로 추출해 `data/processed/gse87571_external_validation_bundle.rds`로 저장한다. 표본은 두 파일에 나뉘어 있고 각 표본이 `Xn`(beta)와 `Xn.1`(detection p-value) 두 열로 저장되므로 beta 열을 exact-zero 비율로 판정한다. 학습 GSM과 중복이 없는지, feature 순서가 학습과 일치하는지 검증하며 **이 단계에서는 모델 성능을 계산하지 않는다.**
+
+```powershell
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/9_prepare_gse87571_external_validation.R
+```
+
+원본 beta 행렬은 다음에서 내려받는다(각 약 1.4GB, Git 제외).
+
+```powershell
+curl --fail --location --continue-at - --retry 8 --output data/raw/GSE87571/GSE87571_matrix1of2.txt.gz `
+  https://ftp.ncbi.nlm.nih.gov/geo/series/GSE87nnn/GSE87571/suppl/GSE87571_matrix1of2.txt.gz
+curl --fail --location --continue-at - --retry 8 --output data/raw/GSE87571/GSE87571_matrix2of2.txt.gz `
+  https://ftp.ncbi.nlm.nih.gov/geo/series/GSE87nnn/GSE87571/suppl/GSE87571_matrix2of2.txt.gz
+```
+
 ## Files
 - 1_data_download.R: download GEO sample metadata
 - 1_data_download_from_geo.r: duplicate download script retained for convenience
