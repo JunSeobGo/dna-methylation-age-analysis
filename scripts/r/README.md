@@ -37,6 +37,17 @@ This folder contains the R analysis scripts used for the project.
 & "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/9_prepare_gse87571_external_validation.R
 ```
 
+## 최종 모델 고정과 외부 검증
+
+`10_lock_model_and_evaluate_gse87571.R`은 학습 코호트만으로 alpha, lambda, 결측 대치값, 가중치 방식을 고정한 뒤에만 `GSE87571` 외부 검증을 수행한다.
+
+```powershell
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/10_lock_model_and_evaluate_gse87571.R --dry-run
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/10_lock_model_and_evaluate_gse87571.R --confirm-external-evaluation
+```
+
+외부 평가 결과가 이미 있으면 재실행을 막으며, 명시적 재평가가 필요한 경우에만 `--force`를 사용한다.
+
 원본 beta 행렬은 다음에서 내려받는다(각 약 1.4GB, Git 제외).
 
 ```powershell

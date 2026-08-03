@@ -147,3 +147,5 @@ BDI 분석은 상관계수, 정규성 검정, 등분산성 검정, 두 집단 �
 GSE40279의 beta value 수집 전 준비와 명시적 다운로드 방법은 [GSE40279 데이터 수집 준비](docs/gse40279-data-preparation.md)를 참고하세요.
 
 과적합을 줄이기 위한 `GSE207605` 다중 코호트 선별 기준, 1차 학습 풀, 잠금 외부 검증 정책은 [다중 코호트 학습 풀과 과적합 방지 정책](docs/multicohort-training-pool.md)에 정리했습니다.
+
+최종 Elastic Net 모델을 학습 데이터만으로 고정하고 `GSE87571`에서 외부 평가하는 순서와 재실행 방지 정책은 [최종 모델 고정과 외부 검증](docs/final-model-and-external-validation.md)을 참고하세요.
