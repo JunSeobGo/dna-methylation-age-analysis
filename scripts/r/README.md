@@ -59,6 +59,17 @@ This folder contains the R analysis scripts used for the project.
 
 설계, 결과 파일, 판정 기준은 `docs/learning-curve-analysis.md`에 정리했다.
 
+## 연령·코호트 편향 감사
+
+`12_audit_age_and_cohort_bias.R`은 학습곡선 100% 조건의 코호트 홀드아웃 예측과 학습 bundle을 사용해 연령 극단부 편향과 취약 코호트의 원인을 진단한다. sample_id·beta 범위·결측률을 확인하고, 각 홀드아웃 코호트에 대해 나머지 학습 코호트의 연령 지원도, CpG 중앙값 이동, 코호트별 MAE 부트스트랩 신뢰구간을 계산한다. `GSE87571`은 읽지 않는다.
+
+```powershell
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/12_audit_age_and_cohort_bias.R --dry-run
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/12_audit_age_and_cohort_bias.R
+```
+
+해석과 다음 실험의 사전 채택 기준은 `docs/age-cohort-bias-audit.md`에 정리했다.
+
 원본 beta 행렬은 다음에서 내려받는다(각 약 1.4GB, Git 제외).
 
 ```powershell

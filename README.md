@@ -151,3 +151,5 @@ GSE40279의 beta value 수집 전 준비와 명시적 다운로드 방법은 [GS
 최종 Elastic Net 모델을 학습 데이터만으로 고정하고 `GSE87571`에서 외부 평가하는 순서와 재실행 방지 정책은 [최종 모델 고정과 외부 검증](docs/final-model-and-external-validation.md)을 참고하세요.
 
 학습 표본 수가 성능의 병목인지 확인하는 코호트 단위 학습곡선 설계와 실행 결과는 [학습 데이터 규모별 학습곡선](docs/learning-curve-analysis.md)을 참고하세요.
+
+고령층 과소예측과 취약 코호트의 연령 지원도·CpG 분포 이동 감사 결과는 [연령 극단과 취약 코호트 편향 감사](docs/age-cohort-bias-audit.md)를 참고하세요.
