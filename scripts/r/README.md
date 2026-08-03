@@ -48,6 +48,17 @@ This folder contains the R analysis scripts used for the project.
 
 외부 평가 결과가 이미 있으면 재실행을 막으며, 명시적 재평가가 필요한 경우에만 `--force`를 사용한다.
 
+## 학습곡선 측정
+
+`11_measure_training_learning_curve.R`은 외부 검증셋을 제외하고 8개 학습 코호트만으로 표본 수별 성능을 측정한다. 코호트 하나를 통째로 홀드아웃한 상태에서 남은 코호트의 25%, 50%, 75%, 100%를 코호트·연령대별로 층화 추출한다. 고정 모델의 하이퍼파라미터를 그대로 사용해 표본 수 효과만 비교한다.
+
+```powershell
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/11_measure_training_learning_curve.R --dry-run
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/11_measure_training_learning_curve.R
+```
+
+설계, 결과 파일, 판정 기준은 `docs/learning-curve-analysis.md`에 정리했다.
+
 원본 beta 행렬은 다음에서 내려받는다(각 약 1.4GB, Git 제외).
 
 ```powershell
