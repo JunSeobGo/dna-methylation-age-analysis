@@ -56,6 +56,8 @@ URL과 공식 바이트 크기는 `config/dataset_download_manifest.csv`에 고�
 & "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/16_prepare_satsa_external_bundle.R --download
 ```
 
+전송이 중단되면 같은 명령을 다시 실행합니다. `--dry-run`은 완성 파일뿐 아니라 `.part`의 현재 바이트와 진행률도 표시합니다. `.part`를 수동으로 완성 파일 이름으로 바꾸면 공식 크기 검사를 우회할 수 있으므로 이름은 직접 바꾸지 않습니다.
+
 모델 성능을 계산하지 않고 스트리밍 추출과 품질검사만 수행합니다.
 
 ```powershell

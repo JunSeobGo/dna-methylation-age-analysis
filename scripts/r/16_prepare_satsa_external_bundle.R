@@ -197,6 +197,11 @@ present <- file.exists(resources$absolute_path)
 actual_bytes <- rep(NA_real_, nrow(resources))
 actual_bytes[present] <- file.info(resources$absolute_path[present])$size
 size_ok <- present & actual_bytes == resources$expected_bytes
+partial_paths <- paste0(resources$absolute_path, ".part")
+partial_present <- file.exists(partial_paths)
+partial_bytes <- rep(0, nrow(resources))
+partial_bytes[partial_present] <- file.info(partial_paths[partial_present])$size
+downloaded_bytes <- ifelse(size_ok, resources$expected_bytes, partial_bytes)
 
 cat("외부 후보:", accession, "\n")
 cat("공식 원본:", nrow(resources), "개 /", round(sum(resources$expected_bytes) / 1e9, 3), "GB\n")
@@ -208,6 +213,8 @@ print(data.frame(
   expected_bytes = resources$expected_bytes,
   downloaded = present,
   size_ok = size_ok,
+  partial_bytes = partial_bytes,
+  progress_percent = round(100 * downloaded_bytes / resources$expected_bytes, 2),
   stringsAsFactors = FALSE
 ), row.names = FALSE)
 
