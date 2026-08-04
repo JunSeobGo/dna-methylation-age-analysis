@@ -81,6 +81,26 @@ This folder contains the R analysis scripts used for the project.
 
 결과와 채택 판단은 `docs/age-bias-mitigation-experiment.md`에 정리했다. 생성되는 `outputs/age_bias_mitigation_*` 파일은 재현 가능한 산출물이므로 Git에서 제외한다.
 
+## age-density 후보 모델 잠금
+
+`14_lock_age_density_candidate.R`은 사전 비교에서 채택된 `age_density`를 확인한 뒤 8개 학습 코호트만으로 alpha·lambda를 선택하고 최종 후보를 고정한다. 외부 데이터 경로를 코드에 두지 않으며 `--confirm-lock` 없이는 모델을 저장하지 않는다. alpha별 tuning checkpoint가 있어 중단 후 재개할 수 있다.
+
+```powershell
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/14_lock_age_density_candidate.R --dry-run
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/14_lock_age_density_candidate.R --confirm-lock
+```
+
+## SATSA 외부 표본 manifest 준비
+
+`15_prepare_satsa_external_manifest.R`은 후보 모델이 먼저 잠겼는지 확인한 뒤 SATSA 공개 표현형만 내려받는다. 450K 반복측정에서 개인별 가장 이른 표본 하나를 선택하고 쌍둥이 가족 `TID`를 보존한다. beta 파일은 다운로드하거나 읽지 않는다.
+
+```powershell
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/15_prepare_satsa_external_manifest.R --dry-run
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/15_prepare_satsa_external_manifest.R --download-metadata
+```
+
+잠금 결과, 외부 후보 근거와 사전 판정 기준은 `docs/age-density-model-lock-and-next-validation.md`에 정리했다.
+
 원본 beta 행렬은 다음에서 내려받는다(각 약 1.4GB, Git 제외).
 
 ```powershell
