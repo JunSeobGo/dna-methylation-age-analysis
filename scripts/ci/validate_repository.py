@@ -172,7 +172,7 @@ def validate_config_values(name: str, rows: list[dict[str, str]]) -> list[str]:
             "model_policy": {"include", "exclude", "conditional"},
         },
         "dataset_download_manifest.csv": {
-            "required_for_stage": {"yes", "no", "conditional"},
+            "required_for_stage": {"yes", "no", "conditional", "external_validation"},
         },
     }
     for number, row in enumerate(rows, start=2):
