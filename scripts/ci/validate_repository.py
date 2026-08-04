@@ -50,6 +50,13 @@ CONFIG_SCHEMAS = {
         },
         "key": ("policy_version",),
     },
+    "r_environment.csv": {
+        "required": {
+            "component", "component_type", "required_version", "version_policy",
+            "scope", "required_by", "reason",
+        },
+        "key": ("component",),
+    },
 }
 
 
@@ -164,6 +171,10 @@ def validate_config_values(name: str, rows: list[dict[str, str]]) -> list[str]:
     """분석 정책에 쓰이는 핵심 값의 허용 범위와 형식을 검사한다."""
     violations: list[str] = []
     allowed_values = {
+        "r_environment.csv": {
+            "component_type": {"r", "package"},
+            "version_policy": {"exact", "minimum"},
+        },
         "cohort_registry.csv": {
             "classification": {"baseline", "candidate", "exclude"},
             "include_in_age_model": {"yes", "no", "conditional"},

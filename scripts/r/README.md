@@ -2,6 +2,16 @@
 
 This folder contains the R analysis scripts used for the project.
 
+## 실행환경 점검
+
+현행 파이프라인을 실행하기 전에 R 4.3.3과 `glmnet` 5.0이 잠금 환경과 일치하는지 확인한다. 원천 데이터는 읽지 않는다.
+
+```powershell
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/0_check_r_environment.R
+```
+
+버전 정책과 레거시 패키지의 범위는 `docs/r-environment-reproducibility.md`를 참고한다.
+
 ## 다중 코호트 학습 풀 감사
 
 `6_audit_gse207605_training_pool.R`은 `GSE207605`의 19개 구성 코호트를 내려받고 표본 수, 연령 범위, beta 값 범위, GSM 중복, 1차 학습 후보의 공통 CpG를 검사한다.
