@@ -20,5 +20,6 @@ ADR은 프로젝트의 중요한 기술·분석 결정을 당시 맥락과 함�
 | [ADR-0003](0003-locked-external-validation.md) | 외부 검증은 모델 잠금 후 한 번 수행 | 승인됨 |
 | [ADR-0004](0004-age-density-candidate.md) | age-density를 외부 검증 대기 후보로 잠금 | 승인됨 |
 | [ADR-0005](0005-satsa-validation-design.md) | SATSA의 개인·가족 의존성과 대용량 beta 처리 정책 | 승인됨 |
+| [ADR-0006](0006-satsa-model-replacement-criteria.md) | SATSA 모델 교체 조건을 결과 확인 전에 고정 | 승인됨 |
 
 새 ADR은 [템플릿](0000-template.md)을 복사해 다음 번호로 작성합니다.

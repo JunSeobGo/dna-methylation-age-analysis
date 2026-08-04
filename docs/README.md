@@ -18,12 +18,13 @@
 | 모델 검증 | [최종 모델과 외부 검증](final-model-and-external-validation.md), [학습곡선](learning-curve-analysis.md) | 일반화 성능과 표본 수 병목 점검 |
 | 편향 진단 | [연령·코호트 편향 감사](age-cohort-bias-audit.md), [연령 편향 완화 실험](age-bias-mitigation-experiment.md) | 취약 연령대 진단과 후보 비교 |
 | 현재 계획 | [후보 모델 잠금과 새 외부 검증](age-density-model-lock-and-next-validation.md) | 외부 검증 전 잠금 상태와 다음 단계 |
+| 평가 정책 | [SATSA 잠금 모델 비교 평가](satsa-locked-evaluation.md) | 새 외부 결과 확인 전 고정한 지표·교체 조건·가족 bootstrap |
 | 저장소 운영 | [GitHub 운영 가이드](github-workflow.md), [기여 가이드](../CONTRIBUTING.md) | Issue·브랜치·PR·커밋 규칙 |
 | 의사결정 | [ADR 인덱스](adr/README.md) | 변경하기 어려운 기술·분석 결정과 이유 |
 
 ## 코드 분류
 
-- `scripts/r/1_*`~`15_*`: 현재 재현 파이프라인. 번호 순서가 데이터 준비부터 후보 잠금과 외부 표본 manifest까지의 실행 순서입니다.
+- `scripts/r/<번호>_*`: 현재 재현 파이프라인. 번호 순서가 데이터 준비부터 후보 잠금과 외부 평가까지의 실행 순서입니다.
 - `scripts/r/Methyl_*`, `scripts/r/GSM샘플 저장.R`: 초기 분석과 탐색 과정의 레거시 스크립트입니다. 현행 모델 성능 재현에는 사용하지 않습니다.
 - `notebooks/`: 초기 Python 전처리·탐색 분석 기록입니다. 현행 Elastic Net 평가 파이프라인과 구분합니다.
 - `scripts/ci/`: 원천 데이터나 대용량 파일이 Git에 포함되지 않았는지 검사합니다.
