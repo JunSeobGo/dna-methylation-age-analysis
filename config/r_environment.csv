@@ -1,0 +1,3 @@
+component,component_type,required_version,version_policy,scope,required_by,reason
+R,r,4.3.3,exact,current_pipeline,scripts/r/0_check_r_environment.R;scripts/r/2_cohort_metadata_audit.R-scripts/r/17_evaluate_satsa_locked_models.R,잠금 모델 생성 및 외부 평가에 사용한 R 버전을 유지
+glmnet,package,5.0,exact,current_pipeline,scripts/r/8_train_grouped_elastic_net.R;scripts/r/10_lock_model_and_evaluate_gse87571.R;scripts/r/11_measure_training_learning_curve.R;scripts/r/13_compare_age_bias_mitigation.R;scripts/r/14_lock_age_density_candidate.R;scripts/r/17_evaluate_satsa_locked_models.R,직렬화된 잠금 모델을 동일 패키지 버전에서 읽고 예측
