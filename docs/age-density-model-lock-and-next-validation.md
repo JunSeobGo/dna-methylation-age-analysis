@@ -47,7 +47,7 @@ LOCO tuning MAE는 같은 학습 코호트에서 하이퍼파라미터를 선택
 
 반복측정 전체를 독립 표본처럼 사용하면 신뢰구간이 과도하게 좁아지므로, 주 분석은 개인별 최초 표본만 사용합니다. 쌍둥이 의존성은 `TID` 단위 paired cluster bootstrap으로 반영합니다.
 
-표현형 manifest는 모델을 먼저 잠근 뒤 생성했습니다. 현재 내려받은 SATSA 파일은 약 100KB의 `SATSA_pheno.txt` 하나뿐이며, 약 6.7GB의 beta 5개 파일은 아직 내려받지 않았습니다.
+표현형 manifest는 모델을 먼저 잠근 뒤 생성했습니다. beta 5개 파일의 공식 URL·바이트와 스트리밍 추출 품질 게이트도 모델 평가 전에 고정했습니다. 자세한 실행 방법은 [SATSA beta 스트리밍 추출과 품질 게이트](satsa-beta-extraction.md)를 참고합니다.
 
 ### 2. 보조 검증: `GSE193879` 건강 대조군
 
@@ -97,8 +97,8 @@ SATSA 표본 규칙을 확인하고 공개 표현형만 내려받아 manifest를
 
 ## 다음 실행 단계
 
-1. SATSA beta 5개 파일의 URL·크기·해시를 download manifest에 등록합니다.
+1. SATSA beta 5개 파일을 내려받아 공식 바이트와 로컬 MD5를 확인합니다.
 2. 전체 beta를 메모리에 올리지 않고 869개 CpG와 잠긴 447개 표본만 스트리밍 추출합니다.
-3. feature coverage, beta 범위, 결측률, 표본 순서와 중복을 검사합니다.
-4. 잠긴 두 모델을 한 번 적용하고 사전 판정 기준 및 `TID` cluster bootstrap을 계산합니다.
+3. 사전 고정한 feature coverage, beta 범위, 결측률, 표본 순서·중복 품질 게이트를 판정합니다.
+4. 품질 게이트 통과 시에만 잠긴 두 모델을 한 번 적용하고 사전 판정 기준 및 `TID` cluster bootstrap을 계산합니다.
 5. 이후에만 `GSE193879` 건강 대조군의 소아 민감도 분석을 진행합니다.
