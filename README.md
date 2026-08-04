@@ -155,3 +155,5 @@ GSE40279의 beta value 수집 전 준비와 명시적 다운로드 방법은 [GS
 고령층 과소예측과 취약 코호트의 연령 지원도·CpG 분포 이동 감사 결과는 [연령 극단과 취약 코호트 편향 감사](docs/age-cohort-bias-audit.md)를 참고하세요.
 
 연령 밀도 가중치·혼합 가중치·내부 보정을 중첩 교차검증으로 비교한 결과와 새 외부 코호트 검증 전까지의 적용 범위는 [연령 편향 완화 후보 비교 실험](docs/age-bias-mitigation-experiment.md)을 참고하세요.
+
+선정된 연령 밀도 가중치 모델의 학습 전용 잠금 결과와 SATSA·소아 외부 검증 순서는 [age-density 후보 모델 잠금과 새 외부 검증 계획](docs/age-density-model-lock-and-next-validation.md)을 참고하세요.
