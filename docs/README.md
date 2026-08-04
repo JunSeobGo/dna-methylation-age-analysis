@@ -19,6 +19,8 @@
 | 편향 진단 | [연령·코호트 편향 감사](age-cohort-bias-audit.md), [연령 편향 완화 실험](age-bias-mitigation-experiment.md) | 취약 연령대 진단과 후보 비교 |
 | 현재 계획 | [후보 모델 잠금과 새 외부 검증](age-density-model-lock-and-next-validation.md) | 외부 검증 전 잠금 상태와 다음 단계 |
 | 평가 정책 | [SATSA 잠금 모델 비교 평가](satsa-locked-evaluation.md) | 새 외부 결과 확인 전 고정한 지표·교체 조건·가족 bootstrap |
+| 결과 보고 | [SATSA 외부 검증 보고서 템플릿](satsa-evaluation-report-template.md) | 실제 결과를 선택적으로 누락하지 않도록 사전에 고정한 보고 항목 |
+| 재현 환경 | [R 실행환경 재현 기준](r-environment-reproducibility.md) | 잠금 모델과 일치해야 하는 R·glmnet 버전과 점검 방법 |
 | 저장소 운영 | [GitHub 운영 가이드](github-workflow.md), [기여 가이드](../CONTRIBUTING.md) | Issue·브랜치·PR·커밋 규칙 |
 | 의사결정 | [ADR 인덱스](adr/README.md) | 변경하기 어려운 기술·분석 결정과 이유 |
 
