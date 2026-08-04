@@ -46,8 +46,11 @@ ci: 저장소 검증 workflow 추가
 
 ```bash
 python scripts/ci/validate_repository.py
+Rscript scripts/ci/validate_r_syntax.R
 git diff --check
 ```
+
+두 검증 명령은 원천 데이터를 내려받거나 분석 패키지를 설치하지 않습니다. Python 검증은 설정 CSV와 저장소 구조를, R 검증은 `scripts/r/`의 구문만 확인합니다.
 
 원천·처리 데이터, 생성 결과, API 키, 개인식별 가능 정보는 커밋하지 않습니다. `data/raw/`, `data/processed/`, `outputs/`는 로컬에서만 관리합니다.
 
