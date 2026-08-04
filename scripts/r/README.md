@@ -70,6 +70,17 @@ This folder contains the R analysis scripts used for the project.
 
 해석과 다음 실험의 사전 채택 기준은 `docs/age-cohort-bias-audit.md`에 정리했다.
 
+## 연령 편향 완화 후보 비교
+
+`13_compare_age_bias_mitigation.R`은 외부 검증셋을 읽지 않고 8개 학습 코호트의 중첩 교차검증 안에서 표준·연령 밀도·연령/코호트 혼합 가중치와 inner OOF 선형 보정을 비교한다. 각 outer fold가 끝날 때 체크포인트를 저장하므로 실행이 중단돼도 완료 지점부터 다시 시작한다.
+
+```powershell
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/13_compare_age_bias_mitigation.R --dry-run
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/13_compare_age_bias_mitigation.R
+```
+
+결과와 채택 판단은 `docs/age-bias-mitigation-experiment.md`에 정리했다. 생성되는 `outputs/age_bias_mitigation_*` 파일은 재현 가능한 산출물이므로 Git에서 제외한다.
+
 원본 beta 행렬은 다음에서 내려받는다(각 약 1.4GB, Git 제외).
 
 ```powershell
