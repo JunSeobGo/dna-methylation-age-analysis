@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -11,6 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 PROHIBITED_PREFIXES = ("data/raw/", "data/processed/", "outputs/")
 PROHIBITED_SUFFIXES = (".zip", ".xlsx", ".hwp", ".pdf", ".pptx", ".ppt", ".docx", ".doc")
+MARKDOWN_LINK_PATTERN = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 
 
 def tracked_files() -> list[str]:
@@ -48,8 +50,34 @@ def validate_notebooks() -> list[str]:
     return violations
 
 
+def validate_markdown_links() -> list[str]:
+    """Git이 추적하는 Markdown의 로컬 상대경로 링크를 검사한다."""
+    violations: list[str] = []
+    for relative_path in tracked_files():
+        if not relative_path.lower().endswith(".md"):
+            continue
+        document = ROOT / relative_path
+        try:
+            content = document.read_text(encoding="utf-8")
+        except OSError as error:
+            violations.append(f"Markdown 파일을 읽을 수 없음 {relative_path}: {error}")
+            continue
+
+        for raw_target in MARKDOWN_LINK_PATTERN.findall(content):
+            target = raw_target.strip().strip("<>")
+            if target.startswith(("http://", "https://", "mailto:", "#")):
+                continue
+            path_only = target.split("#", maxsplit=1)[0]
+            if not path_only:
+                continue
+            linked_path = document.parent / path_only
+            if not linked_path.exists():
+                violations.append(f"깨진 Markdown 링크 {relative_path}: {target}")
+    return violations
+
+
 def main() -> int:
-    violations = validate_tracked_files() + validate_notebooks()
+    violations = validate_tracked_files() + validate_notebooks() + validate_markdown_links()
     if violations:
         print("저장소 검증에 실패했습니다:", file=sys.stderr)
         print("\n".join(f"- {violation}" for violation in violations), file=sys.stderr)

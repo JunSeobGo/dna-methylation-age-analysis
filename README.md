@@ -27,6 +27,8 @@ DNAage_clean/
     └── r/                   # R 기반 다운로드·DNAm age·모델링 스크립트
 ```
 
+현재 모델 상태, 분석 흐름과 문서 분류는 [프로젝트 개요](docs/PROJECT_OVERVIEW.md)와 [문서 인덱스](docs/README.md)에서 확인할 수 있습니다. 중요한 기술·분석 선택의 배경은 [ADR 인덱스](docs/adr/README.md)에 기록합니다.
+
 ## 주요 구성 요소
 
 | 위치 | 용도 |
