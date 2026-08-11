@@ -10,6 +10,16 @@ desktop.ini
 __pycache__/
 .ipynb_checkpoints/
 *.pyc
+.Rproj.user/
+.venv/
+venv/
+
+# Local editor and secret settings
+.idea/
+.vscode/
+.env
+.env.*
+!.env.example
 
 # Project data: raw, processed, and downloaded datasets must stay local.
 # Keep data/README.md as the version-controlled guide to obtaining data.

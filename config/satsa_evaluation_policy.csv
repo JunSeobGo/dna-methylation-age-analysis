@@ -1,0 +1,2 @@
+policy_version,dataset,comparison,older_age_min,overall_mae_noninferiority_margin,older_mae_improvement_min,absolute_bias_worsening_margin,bootstrap_replicates,bootstrap_seed,confidence_level,cluster_unit
+satsa-age-density-v1,S-BSST1206,locked_age_density_candidate_vs_locked_standard,80,0.20,0.50,0.50,10000,20260804,0.95,TID

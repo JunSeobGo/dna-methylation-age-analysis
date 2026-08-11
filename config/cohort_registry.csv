@@ -1,0 +1,10 @@
+series_id,classification,proposed_role,expected_tissue,expected_platform,include_in_age_model,reason,source_url
+GSE72680,baseline,baseline_train,whole blood,GPL13534,yes,현재 보유한 Grady Trauma Project 450K 전체혈액 코호트,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE72680
+GSE40279,candidate,candidate_train,whole blood,GPL13534,yes,넓은 연령 범위를 가진 전체혈액 450K 코호트,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE40279
+GSE87571,candidate,candidate_external_validation,whole blood,GPL13534,yes,14세부터 94세까지의 전체혈액 450K 코호트,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE87571
+GSE50660,candidate,candidate_sensitivity,peripheral blood,GPL13534,conditional,흡연 상태가 포함된 말초혈액 450K 코호트,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE50660
+GSE55763,candidate,candidate_scale_up,peripheral blood,GPL13534,conditional,대규모 말초혈액 450K 코호트이며 기술 반복 표본 점검이 필요함,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55763
+GSE80417,exclude,exclude,whole blood,GPL13534,no,조현병 환자와 대조군으로 구성되어 일반 연령 예측 학습에서 제외,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE80417
+GSE84727,exclude,exclude,whole blood,GPL13534,no,조현병 환자와 대조군으로 구성되어 일반 연령 예측 학습에서 제외,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE84727
+GSE111629,exclude,exclude,whole blood,GPL13534,no,파킨슨병 환자와 대조군으로 구성되어 일반 연령 예측 학습에서 제외,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE111629
+GSE207605,candidate,candidate_training_pool,whole blood,450K/EPIC,conditional,19개 혈액 코호트의 소형 재분석 집합이며 질환·반복측정·코호트 누수 감사 후 선별 사용,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE207605
