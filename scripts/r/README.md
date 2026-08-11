@@ -132,9 +132,12 @@ curl --fail --location --continue-at - --retry 8 --output data/raw/GSE87571/GSE8
   https://ftp.ncbi.nlm.nih.gov/geo/series/GSE87nnn/GSE87571/suppl/GSE87571_matrix2of2.txt.gz
 ```
 
-## Files
-- 1_data_download.R: download GEO sample metadata
-- 1_data_download_from_geo.r: duplicate download script retained for convenience
-- GSM샘플 저장.R: sample metadata saving helper
-- Methyl_age_230526.R: DNA methylation age modeling workflow
-- Methyl_시각화(Ridge, Elastic net, Lasso).R: visualization and modeling experiments
+## 파일 분류
+
+번호가 붙은 스크립트가 현행 재현 파이프라인이며 번호 순서가 곧 실행 순서다.
+
+- `0_check_r_environment.R`: 잠금 모델과 R·glmnet 버전 일치 확인
+- `1_data_download.R`: GEO 표본 메타데이터 다운로드
+- `2_*` ~ `17_*`: 코호트 감사부터 학습 bundle, 중첩 교차검증, 모델 잠금, 외부 검증까지
+
+`legacy/`는 초기 탐색 기록이며 현행 모델 성능 재현에 사용하지 않는다. 목록과 실행 시 주의사항은 `legacy/README.md`에 있다.

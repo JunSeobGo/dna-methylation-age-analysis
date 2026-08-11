@@ -27,7 +27,7 @@ R과 필수 패키지의 설치 버전이 명세와 모두 일치해야 `PASS`�
 
 - 현행 재현 파이프라인: `scripts/r/2_*`부터 외부 평가 스크립트까지이며 외부 패키지는 `glmnet`만 사용합니다.
 - 메타데이터 다운로드와 행렬 스트리밍 처리는 가능한 범위에서 R 기본 패키지를 사용합니다.
-- `1_data_download*`, `GSM샘플 저장.R`, `Methyl_*`는 초기 탐색 기록입니다. `GEOquery`, `readr`, `progress`, `WGCNA`, `sqldf` 등은 현행 모델 재현의 필수 의존성이 아닙니다.
+- `1_data_download.R`과 `scripts/r/legacy/`는 초기 탐색 기록입니다. `GEOquery`, `readr`, `progress`, `WGCNA`, `sqldf` 등은 현행 모델 재현의 필수 의존성이 아닙니다.
 - 레거시 스크립트 안의 패키지 설치 코드는 새 환경 구성 절차로 사용하지 않습니다.
 
 ## renv를 바로 도입하지 않는 이유
