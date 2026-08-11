@@ -14,8 +14,8 @@
 | 내부 평가 | 코호트 그룹 기반 중첩 leave-one-cohort-out |
 | 외부 검증 완료 모델 | 표준 Elastic Net, GSE87571 729명에서 평가 완료 |
 | 개선 후보 | 연령 밀도 가중치 `age_density`, 학습 데이터로 잠금 완료 |
-| 후보 외부 검증 | SATSA 표본 manifest 잠금 완료, 새 외부 beta 준비 단계 |
-| 적용 경계 | SATSA 외부 검증을 통과하기 전에는 표준 모델을 교체하지 않음 |
+| 후보 외부 검증 | SATSA beta 추출 1회 실행, 사전 품질 게이트 `FAIL`(869 CpG 중 610개만 존재)로 평가 미수행 |
+| 적용 경계 | SATSA 외부 검증을 통과하기 전에는 표준 모델을 교체하지 않음(현재 미통과 상태 유지) |
 
 세부 성능 수치는 [최종 모델과 외부 검증](final-model-and-external-validation.md) 및 [연령 편향 완화 실험](age-bias-mitigation-experiment.md)을 참고합니다.
 
@@ -32,8 +32,11 @@
   → 학습곡선과 연령·코호트 편향 감사
   → age-density 후보 비교·잠금
   → 새 SATSA 외부 검증 준비
+  → SATSA beta 스트리밍 추출과 품질 게이트 판정(현재 CpG coverage 미달로 FAIL)
   → 사전 조건 통과 시에만 모델 교체 검토
 ```
+
+SATSA 추출 결과와 실패 원인은 [SATSA beta 스트리밍 추출과 품질 게이트](satsa-beta-extraction.md)에 정리했습니다.
 
 ## 핵심 데이터 역할
 

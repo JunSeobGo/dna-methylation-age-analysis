@@ -159,3 +159,5 @@ GSE40279의 beta value 수집 전 준비와 명시적 다운로드 방법은 [GS
 연령 밀도 가중치·혼합 가중치·내부 보정을 중첩 교차검증으로 비교한 결과와 새 외부 코호트 검증 전까지의 적용 범위는 [연령 편향 완화 후보 비교 실험](docs/age-bias-mitigation-experiment.md)을 참고하세요.
 
 선정된 연령 밀도 가중치 모델의 학습 전용 잠금 결과와 SATSA·소아 외부 검증 순서는 [age-density 후보 모델 잠금과 새 외부 검증 계획](docs/age-density-model-lock-and-next-validation.md)을 참고하세요.
+
+SATSA 6.74GB 원본을 메모리 효율적으로 내려받고 447명 × 869 CpG만 추출하는 절차와 사전 품질 기준은 [SATSA beta 스트리밍 추출과 품질 게이트](docs/satsa-beta-extraction.md)에 정리했습니다.

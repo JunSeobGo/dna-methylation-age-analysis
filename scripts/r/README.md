@@ -111,6 +111,18 @@ This folder contains the R analysis scripts used for the project.
 
 잠금 결과, 외부 후보 근거와 사전 판정 기준은 `docs/age-density-model-lock-and-next-validation.md`에 정리했다.
 
+## SATSA beta 스트리밍 추출과 품질검사
+
+`16_prepare_satsa_external_bundle.R`은 SATSA beta 5개 파일을 재개 가능한 방식으로 내려받고, 전체 6.74GB를 메모리에 올리지 않은 채 잠근 447명과 869개 모델 CpG만 추출한다. 파일 크기·MD5·행 수·SID 연결·CpG coverage·결측률·beta 범위를 검사하며 **모델 성능은 계산하지 않는다.**
+
+```powershell
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/16_prepare_satsa_external_bundle.R --dry-run
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/16_prepare_satsa_external_bundle.R --download
+& "C:\Program Files\R\R-4.3.3\bin\Rscript.exe" scripts/r/16_prepare_satsa_external_bundle.R --extract --confirm-extraction
+```
+
+품질 게이트와 산출물은 `docs/satsa-beta-extraction.md`에 정리했다.
+
 원본 beta 행렬은 다음에서 내려받는다(각 약 1.4GB, Git 제외).
 
 ```powershell
