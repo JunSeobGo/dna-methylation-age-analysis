@@ -72,12 +72,13 @@ DNAage_clean/
 │   └── processed/          # 분석 bundle·잠금 모델, Git 제외
 ├── docs/
 │   ├── adr/                # 기술·분석 의사결정 기록
+│   ├── figures/            # 저장소에 포함하는 결과 그림
 │   └── README.md           # 문서 인덱스
 ├── notebooks/              # 초기 Python 탐색 분석
 ├── outputs/                # 재생성 가능한 지표·그림, Git 제외
 ├── scripts/
 │   ├── ci/                 # 저장소 정책 검사
-│   └── r/                  # 번호 순서의 현행 R 파이프라인과 레거시 실험
+│   └── r/                  # 번호 순서의 현행 R 파이프라인과 legacy/
 └── .github/                # Issue·PR 양식과 CI
 ```
 
